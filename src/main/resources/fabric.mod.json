@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "boomcontrol",
+  "version": "${version}",
+  "name": "Boom Control",
+  "description": "",
+  "authors": [
+    "Blumbo"
+  ],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/boomcontrol/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.blumbo.boomcontrol.BoomControl"
+    ]
+  },
+  "mixins": [
+    "boomcontrol.mixins.json"
+  ],
+  "accessWidener": "boomcontrol.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric": "*",
+    "minecraft": ">=1.19"
+  }
+}
