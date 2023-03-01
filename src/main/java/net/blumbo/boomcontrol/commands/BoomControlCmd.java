@@ -14,6 +14,8 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 
+import java.text.DecimalFormat;
+
 public class BoomControlCmd {
 
     private static final String EXPLOSION_TYPE_ARG = "explosionType";
@@ -136,15 +138,10 @@ public class BoomControlCmd {
     }
 
     private static String percentText(float percentage) {
-        int intPercentage = (int) percentage;
-        if (intPercentage == percentage) {
-            return "§b" + intPercentage + "%";
-        } else {
-            int shownFraction = Math.round((percentage - intPercentage) * 100);
-            return "§b" + intPercentage + "." + shownFraction + "%";
-        }
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String shownPercentage = decimalFormat.format(percentage);
+        return "§b" + shownPercentage + "%";
     }
-
 
     public static String camelToLookGood(String camel) {
         StringBuilder sb = new StringBuilder(camel);
