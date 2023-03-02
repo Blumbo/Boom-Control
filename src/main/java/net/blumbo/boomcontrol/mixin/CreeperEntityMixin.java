@@ -12,7 +12,7 @@ public abstract class CreeperEntityMixin {
 
     @Shadow public abstract boolean shouldRenderOverlay();
 
-    @ModifyArg(method = "explode", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
+    @ModifyArg(method = "explode", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
     private float setPower(float power) {
         if (shouldRenderOverlay()) {
             return ExplosionValues.CHARGED_CREEPER.getPower(power);

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(WitherSkullEntity.class)
 public class WitherSkullEntityMixin {
 
-    @ModifyArg(method = "onCollision", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
+    @ModifyArg(method = "onCollision", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
     private float setPower(float power) {
         return (ExplosionValues.WITHER_SKULL.getPower(power));
     }

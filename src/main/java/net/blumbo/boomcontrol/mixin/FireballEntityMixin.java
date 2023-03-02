@@ -1,7 +1,6 @@
 package net.blumbo.boomcontrol.mixin;
 
 import net.blumbo.boomcontrol.custom.ExplosionValues;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.projectile.AbstractFireballEntity;
@@ -18,12 +17,7 @@ public class FireballEntityMixin extends AbstractFireballEntity {
         super(entityType, world);
     }
 
-    @ModifyArg(method = "onCollision", index = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
-    private Entity setDamageEntity(Entity entity) {
-        return (FireballEntity)(Object)this;
-    }
-
-    @ModifyArg(method = "onCollision", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
+    @ModifyArg(method = "onCollision", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
     private float setPower(float power) {
         if (getOwner() instanceof GhastEntity) {
             return ExplosionValues.GHAST_FIREBALL.getPower(power);

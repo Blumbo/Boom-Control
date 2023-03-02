@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(TntEntity.class)
 public class TntEntityMixin {
 
-    @ModifyArg(method = "explode", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"))
+    @ModifyArg(method = "explode", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
     private float setPower(float power) {
         return (ExplosionValues.TNT.getPower(power));
     }
