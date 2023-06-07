@@ -1,3 +1,4 @@
 accessWidener	v1	named
-accessible  field  net/minecraft/world/explosion/Explosion	  entity  Lnet/minecraft/entity/Entity;
-accessible  field  net/minecraft/world/explosion/Explosion	  createFire  Z
+accessible  field   net/minecraft/world/explosion/Explosion     entity      Lnet/minecraft/entity/Entity;
+accessible  field   net/minecraft/world/explosion/Explosion     createFire  Z
+accessible  field   net/minecraft/entity/damage/DamageSources   registry    Lnet/minecraft/registry/Registry;

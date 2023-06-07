@@ -17,15 +17,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class RespawnAnchorBlockMixin {
 
     private BlockPos pos;
+    private World world;
 
     @Inject(method = "explode", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/damage/DamageSource;Lnet/minecraft/world/explosion/ExplosionBehavior;Lnet/minecraft/util/math/Vec3d;FZLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
-    private void getPos(BlockState state, World world, BlockPos explodedPos, CallbackInfo ci) {
+    private void getLocation(BlockState state, World world, BlockPos explodedPos, CallbackInfo ci) {
         this.pos = explodedPos;
+        this.world = world;
     }
 
     @ModifyArg(method = "explode", index = 1, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/damage/DamageSource;Lnet/minecraft/world/explosion/ExplosionBehavior;Lnet/minecraft/util/math/Vec3d;FZLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
     private DamageSource setDamageSource(DamageSource damageSource) {
-        return new AnchorDamageSource(pos.toCenterPos());
+        return AnchorDamageSource.anchorExplode(world.getDamageSources(), pos.toCenterPos());
     }
 
     @ModifyArg(method = "explode", index = 4, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/damage/DamageSource;Lnet/minecraft/world/explosion/ExplosionBehavior;Lnet/minecraft/util/math/Vec3d;FZLnet/minecraft/world/World$ExplosionSourceType;)Lnet/minecraft/world/explosion/Explosion;"))
