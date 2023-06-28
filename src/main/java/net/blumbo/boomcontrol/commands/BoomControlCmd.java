@@ -92,7 +92,7 @@ public class BoomControlCmd {
                 .append(valueString(values, valueType)).append("\n");
         }
 
-        context.getSource().sendFeedback(Text.of(sb.toString()), false);
+        context.getSource().sendFeedback(() -> Text.of(sb.toString()), false);
         return 0;
     }
 
@@ -106,7 +106,7 @@ public class BoomControlCmd {
             "§7 " + camelToLookGood(FIRE_PERCENTAGE_ARG) + ": " + percentText(values.firePercentage) + "\n" +
             "§7 " + camelToLookGood(DESTROY_ITEMS_ARG) + ": " + boolText(values.destroyItems) + "\n";
 
-        context.getSource().sendFeedback(Text.of(string), false);
+        context.getSource().sendFeedback(() -> Text.of(string), false);
         return 0;
     }
 
@@ -118,7 +118,7 @@ public class BoomControlCmd {
 
         String explosionType = StringArgumentType.getString(context, EXPLOSION_TYPE_ARG);
 
-        context.getSource().sendFeedback(Text.of("§7" + camelToLookGood(explosionType) + " " +
+        context.getSource().sendFeedback(() -> Text.of("§7" + camelToLookGood(explosionType) + " " +
             camelToLookGood(valueType) + " is currently " + valueString), false);
 
         return 0;
@@ -130,7 +130,7 @@ public class BoomControlCmd {
 
         float powerPercentage = FloatArgumentType.getFloat(context, POWER_PERCENTAGE_ARG);
         values.powerPercentage = powerPercentage;
-        context.getSource().sendFeedback(Text.of("§7" + camelToLookGood(POWER_PERCENTAGE_ARG) +
+        context.getSource().sendFeedback(() -> Text.of("§7" + camelToLookGood(POWER_PERCENTAGE_ARG) +
             " set to §b" + percentText(powerPercentage) + " §7for §b" + values.name), false);
 
         return 0;
@@ -142,7 +142,7 @@ public class BoomControlCmd {
 
         float firePercentage = FloatArgumentType.getFloat(context, FIRE_PERCENTAGE_ARG);
         values.firePercentage = firePercentage;
-        context.getSource().sendFeedback(Text.of("§7" + camelToLookGood(FIRE_PERCENTAGE_ARG) +
+        context.getSource().sendFeedback(() -> Text.of("§7" + camelToLookGood(FIRE_PERCENTAGE_ARG) +
             " set to §b" + percentText(firePercentage) + " §7for §b" + values.name), false);
 
         return 0;
@@ -154,7 +154,7 @@ public class BoomControlCmd {
 
         boolean destroyItems = BoolArgumentType.getBool(context, DESTROY_ITEMS_ARG);
         values.destroyItems = destroyItems;
-        context.getSource().sendFeedback(Text.of("§7" + camelToLookGood(DESTROY_ITEMS_ARG) +
+        context.getSource().sendFeedback(() -> Text.of("§7" + camelToLookGood(DESTROY_ITEMS_ARG) +
             " set to " + boolText(destroyItems) + " §7for §b" + values.name), false);
 
         return 0;
